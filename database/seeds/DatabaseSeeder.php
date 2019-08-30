@@ -11,6 +11,46 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+    	DB::table('status_codes')->insert([
+    	    'status_codes' => 'c01',
+    	    'Description' => 'User Logged into App',
+    	]);
+
+    	DB::table('status_codes')->insert([
+    	    'status_codes' => 'c02',
+    	    'Description' => 'User visited logs',
+    	]);
+
+    	DB::table('status_codes')->insert([
+    	    'status_codes' => 'c03',
+    	    'Description' => 'User visited dashboard',
+    	]);
+
+    	DB::table('status_codes')->insert([
+    	    'status_codes' => 'c04',
+    	    'Description' => 'User visited localization',
+    	]);
+
+    	DB::table('status_codes')->insert([
+    	    'status_codes' => 'c05',
+    	    'Description' => 'User visited API key Page',
+    	]);
+
+    	DB::table('status_codes')->insert([
+    	    'status_codes' => 'c06',
+    	    'Description' => 'User visited change password page',
+    	]);
+
+    	DB::table('status_codes')->insert([
+    	    'status_codes' => 'c07',
+    	    'Description' => 'User visited homepage page',
+    	]);
+
+    	DB::table('status_codes')->insert([
+    	    'status_codes' => 'c08',
+    	    'Description' => 'User logged out of App',
+    	]);
+
         $countries = array(
 		array('id' => 1,'code' => 'AF' ,'name' => "Afghanistan",'phonecode' => 93),
 		array('id' => 2,'code' => 'AL' ,'name' => "Albania",'phonecode' => 355),

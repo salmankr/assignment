@@ -13,7 +13,7 @@ $(document).ready(function () {
 		      	var states = '<option disabled="" selected>Select State</option>';
 
 		      	$.each(success, function (index, val) {
-		      		states += "<option id='"+val.id+"'>"+val.name+"</option>";
+		      		states += "<option value='"+val.id+"'>"+val.name+"</option>";
 		      	});
 
 		      	$('#state').html(states);

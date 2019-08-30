@@ -13,8 +13,19 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    @if(isset($message))
+                    <div class="alert alert-danger" role="alert">
+                        {{$message}}
+                    </div>
+                    <a class="btn btn-primary" href="{{route('verification.notice')}}" role="button">Go to Verification page</a>
+                    @else
+                    <h3>{{$userObj->name}}</h3>
+                    <h3>{{$userObj->email}}</h3>
+                    <p>Address: {{$userObj->address}}</p>
+                    <p>City: {{$userObj->city}}</p>
+                    <p>Country: {{$userObj->country->name}}</p>
+                    <p>State: {{$userObj->state->name}}</p>
+                    @endif
                 </div>
             </div>
         </div>

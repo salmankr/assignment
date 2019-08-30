@@ -12,6 +12,9 @@
 */
 
 Route::get('/', function () {
+	if(Illuminate\Support\Facades\Auth::check()){
+		$log = App\models\logdata\log::saveData(7);	
+	}
     return view('welcome');
 });
 
@@ -19,3 +22,17 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/states/{id}', 'userDataController@states');
+
+Route::middleware('auth')->group(function(){
+	Route::get('/api-key-generation', 'userDataController@apiKeys')->name('api');
+	Route::name('change.')->middleware('emailVerified')->group(function(){
+		Route::get('/password-change', 'userDataController@changePasswordView')->name('view');
+		Route::post('/password-change', 'userDataController@changePasswordSave')->name('save');
+	});
+	Route::middleware('emailVerified')->group(function(){
+		Route::get('/logs', 'logsDataController@index')->name('logsView');
+	});
+});
+
+
+Route::get('/localization/{locale}', 'userDataController@localization')->name('localization');

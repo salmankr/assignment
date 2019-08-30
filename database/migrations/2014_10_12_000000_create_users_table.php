@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('city');
             $table->integer('country_id');
             $table->integer('state_id');
-            $table->string('encrypted_key');
-            $table->string('api_key');
+            $table->string('encrypted_key')->nullable();
+            $table->string('api_key')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

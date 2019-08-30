@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'address', 'city', 'country_id', 'state_id', 'encrypted_key', 'api_key',
     ];
 
     /**
@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function country(){
+        return $this->belongsTo('App\models\userdata\country','country_id');
+    }
+
+    public function state(){
+        return $this->belongsTo('App\models\userdata\state','state_id');
+    }
 }

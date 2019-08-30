@@ -64,7 +64,12 @@
                                 @endif
                             </div>
                         </div>
-                    </form>
+                    </form><br />
+                    @if(session('message'))
+                    <div class="alert alert-danger">
+                        {{session('message')}}
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
