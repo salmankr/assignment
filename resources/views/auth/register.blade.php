@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __($title) }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route($route) }}">
                         @csrf
 
                         <div class="form-group row">
@@ -94,7 +94,7 @@
 
                             <div class="col-md-6">
                                 {{-- <input id="country" type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country"> --}}
-                                <select class="form-control @error('country') is-invalid @enderror" name="country" id="country" >
+                                <select class="form-control country @error('country') is-invalid @enderror" name="country" id="country" >
                                     <option disabled="" selected="">Please select the country</option>
                                     @foreach($countries as $country)
                                     <option value="{{$country->id}}">{{$country->name}}</option>
@@ -114,7 +114,7 @@
 
                             <div class="col-md-6">
                                 {{-- <input id="state" type="text" class="form-control @error('state') is-invalid @enderror" name="state" value="{{ old('state') }}" required autocomplete="state"> --}}
-                                <select class="form-control @error('state') is-invalid @enderror" name="state" id="state">
+                                <select class="form-control state @error('state') is-invalid @enderror" name="state" id="state">
                                     <option disabled="" selected="">Please select the country first</option>
                                 </select>
 
@@ -126,6 +126,18 @@
                             </div>
                         </div>
 
+                        @if(Auth::check() && Auth::user()->owner_id == null)
+                        <label for="state" class="col-md-4 col-form-label text-md-right">{{ __('Permissions') }}</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="read" value="1">
+                            <label class="form-check-label" for="inlineCheckbox1">Read</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="write" value="2">
+                            <label class="form-check-label" for="inlineCheckbox2">Write</label>
+                        </div>
+                        @endif
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -133,7 +145,12 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form><br />
+                    @if(session('message'))
+                    <div class="alert alert-success">
+                        {{session('message')}}
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

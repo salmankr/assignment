@@ -3,11 +3,11 @@
 namespace App\models\logdata;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Controllers\browserInfoCOntroller;
+use App\Helpers\getBrowser;
 class browser extends Model
 {
     public static function saveData(){
-    	$currentBrowser = browserInfoCOntroller::currentUserBrowser();
+    	$currentBrowser = getBrowser::browserName();
     	$ifexist = browser::where('name', $currentBrowser)->first();
     	if ($ifexist === null) {
     		$browserObj = new browser;

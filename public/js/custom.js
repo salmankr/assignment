@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-	$('body').on('change','#country',function(){
+	$('body').on('change','.country',function(){
 
 		var id = $('#country').val();
 
@@ -9,14 +9,14 @@ $(document).ready(function () {
 		    type: 'GET',
 
 		    success: function(success){
-		      	
+		      	// console.log(success);
 		      	var states = '<option disabled="" selected>Select State</option>';
 
 		      	$.each(success, function (index, val) {
 		      		states += "<option value='"+val.id+"'>"+val.name+"</option>";
 		      	});
 
-		      	$('#state').html(states);
+		      	$('.state').html(states);
 
 		      }
 		    })

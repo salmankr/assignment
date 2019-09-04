@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\models\api\payment;
 
 class RegisterController extends Controller
 {
@@ -79,6 +80,7 @@ class RegisterController extends Controller
          $saved->forceFill([
             'encrypted_key' => encrypt($saved->id),
         ])->save();
+         payment::saveData($saved->id);
         return $saved;
     }
 }

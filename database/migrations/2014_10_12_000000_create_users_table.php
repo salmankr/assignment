@@ -24,7 +24,8 @@ class CreateUsersTable extends Migration
             $table->integer('country_id');
             $table->integer('state_id');
             $table->string('encrypted_key')->nullable();
-            $table->string('api_key')->nullable();
+            $table->string('api_token')->unique()->nullable()->default(null);
+            $table->integer('owner_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

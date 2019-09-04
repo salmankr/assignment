@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:api')->group(function(){
+	Route::post('/send-email', 'api\emailController@saveEmailRequest');
+	Route::post('/email-status', 'api\emailController@getEmailStatus');
+});

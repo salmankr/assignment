@@ -37,9 +37,12 @@
                     <!-- Left Side Of Navbar -->
                     @auth
                     <ul class="navbar-nav mr-auto">
-                        <li><a href="{{route('api')}}">API keys</a></li>
+                        @if(Auth::user()->owner_id == null)
+                        <li class="ml-3"><a href="{{route('userFormView')}}">Add User</a></li>
+                        <li class="ml-3"><a href="{{route('api')}}">API keys</a></li>
                         <li class="ml-3"><a href="{{route('change.view')}}">Change Your Password</a></li>
                         <li class="ml-3"><a href="{{route('logsView')}}">View Logs</a></li>
+                        @endif
                         <li class="ml-3"><a href="{{route('localization', ['locale' => 'en'])}}">Localization</a></li>
                     </ul>
                     @endauth

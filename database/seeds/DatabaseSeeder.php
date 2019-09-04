@@ -43,13 +43,29 @@ class DatabaseSeeder extends Seeder
 
     	DB::table('status_codes')->insert([
     	    'status_codes' => 'c07',
-    	    'Description' => 'User visited homepage page',
+    	    'Description' => 'User visited homepage',
     	]);
 
     	DB::table('status_codes')->insert([
     	    'status_codes' => 'c08',
     	    'Description' => 'User logged out of App',
     	]);
+
+    	$api_status = [
+    		['name' => 'received'],
+    		['name' => 'processed'],
+    		['name' => 'error'],
+    		['name' => 'invalid'],
+    	];
+
+    	DB::table('statuses')->insert($api_status);
+
+    	$roles = [
+    		['name' => 'read'],
+    		['name' => 'write'],
+    	];
+
+    	DB::table('roles')->insert($roles);
 
         $countries = array(
 		array('id' => 1,'code' => 'AF' ,'name' => "Afghanistan",'phonecode' => 93),

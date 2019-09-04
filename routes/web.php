@@ -24,15 +24,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/states/{id}', 'userDataController@states');
 
 Route::middleware('auth')->group(function(){
-	Route::get('/api-key-generation', 'userDataController@apiKeys')->name('api');
-	Route::name('change.')->middleware('emailVerified')->group(function(){
+	Route::get('/localization/{locale}', 'userDataController@localization')->name('localization');
+	Route::name('change.')->middleware('emailVerified', 'subUser')->group(function(){
 		Route::get('/password-change', 'userDataController@changePasswordView')->name('view');
 		Route::post('/password-change', 'userDataController@changePasswordSave')->name('save');
 	});
-	Route::middleware('emailVerified')->group(function(){
+	Route::middleware('emailVerified', 'subUser')->group(function(){
 		Route::get('/logs', 'logsDataController@index')->name('logsView');
+		Route::get('/api-key-generation', 'userDataController@apiKeys')->name('api');
+		Route::get('/register/sub-user', 'merchantController@userFormView')->name('userFormView');
+		Route::post('/register/sub-user', 'merchantController@userFormSubmit')->name('userFormSubmit');
 	});
 });
-
-
-Route::get('/localization/{locale}', 'userDataController@localization')->name('localization');

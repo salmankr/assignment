@@ -25,6 +25,10 @@ class log extends Model
     	return true;
     }
 
+    public static function logHistory(){
+        return log::where('user_id', Auth::id())->orderBy('id', 'desc')->get();
+    }
+
     public function user(){
         return $this->belongsTo('App\User','user_id');
     }
